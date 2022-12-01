@@ -1,12 +1,13 @@
 terraform {
-  required_version = "~> <terraform latest version eg: 1.1.0>"
+  required_version = "~> 1.3.0"
 
+  # TODO Uncomment once the backend S3 bucket is created and upload the state tate file.
   backend "s3" {}
 
   required_providers {
     aws = {
       source  = "hashicorp/aws"
-      version = "~> <terraform aws plugin version eg: 4.0.0>"
+      version = "~> 4.44.0"
     }
   }
 }
@@ -18,8 +19,6 @@ provider "aws" {
   }
 }
 
-locals {
-  project = format("%s-%s", var.app_name, var.env_short)
-}
-
 data "aws_caller_identity" "current" {}
+
+data "aws_availability_zones" "available" {}
