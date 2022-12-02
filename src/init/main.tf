@@ -1,13 +1,13 @@
 terraform {
-  required_version = "~> <terraform latest version eg: 1.1.0>"
+  required_version = "~> 1.3.0"
 
   # TODO Uncomment once the backend S3 bucket is created and upload the state tate file.
-  #backend "s3" {}
+  backend "s3" {}
 
   required_providers {
     aws = {
       source  = "hashicorp/aws"
-      version = "~> <terraform aws plugin version eg: 4.0.0>"
+      version = "~> 4.44.0"
     }
   }
 }
@@ -73,11 +73,13 @@ resource "aws_dynamodb_table" "dynamodb-terraform-state-lock" {
 
 }
 
+
 data "aws_iam_policy" "admin_access" {
   name = "AdministratorAccess"
 }
 
 data "aws_caller_identity" "current" {}
+
 
 # github openid identity provider.
 resource "aws_iam_openid_connect_provider" "github" {

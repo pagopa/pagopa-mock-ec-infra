@@ -25,7 +25,6 @@ on:
         default: dev
         options:
         - dev
-        - uat
 
 
 jobs:
@@ -45,7 +44,7 @@ jobs:
 
       - name: Configure AWS Credentials
         env:
-          AWS_REGION: eu-south-1
+          AWS_REGION: eu-central-1
         uses: aws-actions/configure-aws-credentials@67fbcbb121271f7775d2e7715933280b06314838
         with:
           role-to-assume: ${{ secrets.IAM_ROLE }}
@@ -63,7 +62,7 @@ jobs:
       strategy:
         max-parallel: 1
         matrix:
-          environment: [dev, uat, prod_w]
+          environment: [dev]
       runs-on: ubuntu-latest
       continue-on-error: false
       environment: ${{ matrix.environment }}
@@ -77,7 +76,7 @@ jobs:
 
         - name: Configure AWS Credentials
           env:
-            AWS_REGION: eu-south-1
+            AWS_REGION: eu-central-1
           uses: aws-actions/configure-aws-credentials@67fbcbb121271f7775d2e7715933280b06314838
           with:
             role-to-assume: ${{ secrets.IAM_ROLE }}
