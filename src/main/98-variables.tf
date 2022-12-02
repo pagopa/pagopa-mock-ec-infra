@@ -1,7 +1,7 @@
 variable "aws_region" {
   type        = string
   description = "AWS region to create resources. Default Milan"
-  default     = "eu-south-1"
+  default     = "eu-central-1"
 }
 
 variable "app_name" {

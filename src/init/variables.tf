@@ -1,7 +1,7 @@
 variable "aws_region" {
   type        = string
   description = "AWS region (default is Milan)"
-  default     = "eu-south-1"
+  default     = "eu-central-1"
 }
 
 variable "environment" {
@@ -10,12 +10,13 @@ variable "environment" {
   default     = "Uat"
 }
 
-/*
+
 variable "github_repository" {
   type        = string
   description = "This github repository"
+  default     = "pagopa/pagopa-mock-ec-infra"
 }
-*/
+
 
 
 variable "tags" {
