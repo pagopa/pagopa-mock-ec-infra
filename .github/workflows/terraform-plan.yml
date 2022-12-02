@@ -5,7 +5,7 @@ on:
     branches:
       - '**'        # matches every branch
       - '!main'     # excludes main
-      - '!master'     # excludes master
+      - '!master'   # excludes master
     paths:
       - 'src/main/**'
       - '.github/workflows/*.yml'
@@ -23,7 +23,7 @@ jobs:
   terraform:
     strategy:
       matrix:
-        environment: [dev, uat, prod]
+        environment: [dev]
     name: "terraform-plan"
     runs-on: ubuntu-latest
     environment: ${{ matrix.environment }}
@@ -34,7 +34,7 @@ jobs:
 
       - name: Configure AWS Credentials
         env:
-          AWS_REGION: eu-south-1
+          AWS_REGION: eu-central-1
         uses: aws-actions/configure-aws-credentials@67fbcbb121271f7775d2e7715933280b06314838
         with:
           role-to-assume: ${{ secrets.IAM_ROLE }}
