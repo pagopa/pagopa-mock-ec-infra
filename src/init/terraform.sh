@@ -7,6 +7,9 @@ env=$2
 shift 2
 other=$@
 
+aws_region="MOCK"
+aws_profile="MOCK"
+
 if [ -z "$action" ]; then
   echo "Missed action: init, apply, plan"
   exit 0
@@ -16,6 +19,11 @@ if [ -z "$env" ]; then
   echo "env should be: dev, uat or prod."
   exit 0
 fi
+
+# shellcheck source=/dev/null
+source "./env/$env/backend.ini"
+export AWS_REGION="${aws_region}"
+export AWS_PROFILE="${aws_profile}"
 
 if echo "init plan apply refresh import output state taint destroy" | grep -w $action > /dev/null; then
   if [ $action = "init" ]; then
